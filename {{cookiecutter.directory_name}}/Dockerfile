@@ -1,7 +1,7 @@
 #################### Pull nvidia docker image from dockerhub
 FROM nvidia/cuda:11.1.1-devel-ubuntu20.04
 ENV TZ=Asia/Seoul
-ENV WORK_DIR=/ros2_ws
+ENV WORK_DIR=/root/ros2_ws
 
 #################### Install ubuntu env and utils
 # Set timezone
