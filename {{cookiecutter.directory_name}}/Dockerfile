@@ -19,8 +19,8 @@ RUN pip install --upgrade pip
 RUN apt-get install git net-tools iputils-ping nano -y
 
 #################### Install package dependencies
-# RUN apt-get install ffmpeg libsm6 libxext6  -y
-# RUN python3 -m pip install opencv-python==4.5.5.64 numpy==1.22.4 pyrealsense2 gdown imutils scikit-learn scikit-image Cython==0.29.33 Pillow==9.5.0
+RUN apt-get install ffmpeg libsm6 libxext6  -y
+RUN python3 -m pip install opencv-python==4.5.5.64 numpy==1.22.4 pyrealsense2 gdown imutils scikit-learn scikit-image Cython==0.29.33 Pillow==9.5.0
 
 # RUN python3 -m pip install detectron2 -f  https://dl.fbaipublicfiles.com/detectron2/wheels/cu111/torch1.10/index.html
 # RUN python3 -m pip install torch==1.10.1+cu111 torchvision==0.11.2+cu111 torchaudio==0.10.1 -f https://download.pytorch.org/whl/cu111/torch_stable.html
@@ -44,6 +44,7 @@ RUN apt update && apt install -y \
     && rm -rf /var/lib/apt/lists/*
 # Initialize rosdep
 RUN rosdep init  && rosdep update
+RUN apt-get install ros-foxy-cv-bridge
 # Source ROS 2 setup script
 RUN echo "source /opt/ros/foxy/setup.bash" >> /root/.bashrc
 # Create ROS 2 workspace

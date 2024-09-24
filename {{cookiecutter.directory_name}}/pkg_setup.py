@@ -1,8 +1,7 @@
 from setuptools import setup
 from glob import glob
-import os
 
-package_name = os.path.basename(os.path.dirname(__file__))
+package_name = 'PACKAGE_NAME_HERE'
 
 setup(
     name=package_name,
@@ -17,7 +16,7 @@ setup(
     install_requires=['setuptools'],
     zip_safe=True,
     maintainer='root',
-    maintainer_email='root@todo.todo',
+    maintainer_email='bmtrungvp@gmail.com',
     description=f'{package_name} Package',
     license='Apache License 2.0',
     tests_require=['pytest'],

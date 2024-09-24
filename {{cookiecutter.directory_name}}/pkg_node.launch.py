@@ -1,8 +1,7 @@
 from launch import LaunchDescription
 from launch_ros.actions import Node
-import os
 
-package_name = os.path.basename(os.path.dirname(os.path.dirname(__file__)))
+package_name = 'PACKAGE_NAME_HERE'
 
 def generate_launch_description():
     return LaunchDescription([

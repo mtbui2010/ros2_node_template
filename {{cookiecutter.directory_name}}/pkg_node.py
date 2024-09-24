@@ -1,8 +1,8 @@
 import rclpy
 from rclpy.node import Node
 from cv_bridge import CvBridge
-import os
-package_name = os.path.basename(os.path.dirname(__file__))
+
+package_name = 'PACKAGE_NAME_HERE'
 
 class ImageSender(Node):
     def __init__(self):
