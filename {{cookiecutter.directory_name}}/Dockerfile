@@ -38,13 +38,13 @@ RUN curl -sSL https://raw.githubusercontent.com/ros/rosdistro/master/ros.asc | a
 # Install ROS 2 base
 RUN apt update && apt install -y \
     ros-foxy-ros-base \
+    ros-foxy-cv-bridge \
     python3-colcon-common-extensions \
     python3-pip \
     python3-rosdep \
     && rm -rf /var/lib/apt/lists/*
 # Initialize rosdep
 RUN rosdep init  && rosdep update
-RUN apt-get install ros-foxy-cv-bridge
 # Source ROS 2 setup script
 RUN echo "source /opt/ros/foxy/setup.bash" >> /root/.bashrc
 # Create ROS 2 workspace
