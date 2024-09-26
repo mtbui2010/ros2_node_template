@@ -2,7 +2,9 @@
 FROM nvidia/cuda:11.1.1-devel-ubuntu20.04
 ENV TZ=Asia/Seoul
 ENV WORK_DIR=/root/ros2_ws
+ARG PKG_DIR=/media/keti/workdir/projects
 
+RUN mkdir -p $PKG_DIR
 #################### Install ubuntu env and utils
 # Set timezone
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
@@ -22,8 +24,8 @@ RUN apt-get install git net-tools iputils-ping nano -y
 RUN apt-get install ffmpeg libsm6 libxext6  -y
 RUN python3 -m pip install opencv-python==4.5.5.64 numpy==1.22.4 pyrealsense2 gdown imutils scikit-learn scikit-image Cython==0.29.33 Pillow==9.5.0
 
-# RUN python3 -m pip install detectron2 -f  https://dl.fbaipublicfiles.com/detectron2/wheels/cu111/torch1.10/index.html
-# RUN python3 -m pip install torch==1.10.1+cu111 torchvision==0.11.2+cu111 torchaudio==0.10.1 -f https://download.pytorch.org/whl/cu111/torch_stable.html
+RUN python3 -m pip install detectron2 -f  https://dl.fbaipublicfiles.com/detectron2/wheels/cu111/torch1.10/index.html
+RUN python3 -m pip install torch==1.10.1+cu111 torchvision==0.11.2+cu111 torchaudio==0.10.1 -f https://download.pytorch.org/whl/cu111/torch_stable.html
 
 #################### Install ROS2
 # Install prerequisites
@@ -56,3 +58,7 @@ RUN /bin/bash -c "source /opt/ros/foxy/setup.bash && colcon build"
 # Source the workspace setup script
 RUN echo "source /root/ros2_ws/install/local_setup.bash" >> /root/.bashrc
 CMD ["/bin/bash"]
+# alias
+RUN echo "alias source_ros2='source /opt/ros/foxy/setup.bash'" >> /root/.bashrc
+RUN echo "alias source_ros2_setup='source ~/ros2_ws/install/setup.bash'" >> /root/.bashrc
+RUN echo "alias source_bashrc='source ~/.bashrc'" >> /root/.bashrc
