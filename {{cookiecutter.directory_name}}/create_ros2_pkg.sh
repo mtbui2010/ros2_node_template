@@ -8,8 +8,7 @@ PACKAGE_NAME=$1
 
 # Create the package with the default ament_python template
 ros2 pkg create $PACKAGE_NAME --build-type ament_python --dependencies rclpy opencv-python numpy pyrealsense2 cv_bridge
-
-
+#!/bin/bash
 # Add custom files or directories as needed
 mkdir $PACKAGE_NAME/launch
 LAUNCH_FILE_PATH=$PACKAGE_NAME/launch/$PACKAGE_NAME"_node.launch.py"
