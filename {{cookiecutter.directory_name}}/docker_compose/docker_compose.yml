@@ -1,0 +1,62 @@
+version: '3.8'
+
+services:
+  ros2_sensor:
+    build:
+      context: ${SEN_CONTEXT}
+      dockerfile: Dockerfile
+      args:
+        PKG_DIR: ${SEN_PKG_DIR}
+    container_name: ${SEN_CONTAINER_NAME}
+    #    command: ros2 run <package_name> <node_executable_1>
+    runtime: nvidia
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - capabilities: [ gpu ]  # Enable GPU support
+    network_mode: host  # Use host network
+    privileged: true    # Enable privileged mode
+    environment:
+      - DISPLAY=:0.0
+    volumes:
+      - /tmp/.X11-unix:/tmp/.X11-unix:ro  # Mount X11 socket for GUI apps
+      - /dev:/dev                         # Mount /dev to access devices
+      - ${SEN_CONTEXT}:${SEN_SHARED_DIR}
+      - ${SEN_PKG_DIR}:${SEN_PKG_DIR}
+    stdin_open: true    # Keep stdin open (equivalent to -i)
+    tty: true           # Allocate a pseudo-TTY (equivalent to -t)
+    working_dir: /root/ros2_ws
+
+
+  ros2_recognition:
+    build:
+      context: ${REG_CONTEXT}
+      dockerfile: Dockerfile
+      args:
+        PKG_DIR: ${REG_PKG_DIR}
+    container_name: ${REG_CONTAINER_NAME}
+    #    command: ros2 run <package_name> <node_executable_1>
+    runtime: nvidia
+    deploy:
+      resources:
+        reservations:
+          devices:
+              - capabilities: [ gpu ]  # Enable GPU support
+    network_mode: host  # Use host network
+    privileged: true    # Enable privileged mode
+    environment:
+      - DISPLAY=:0.0
+    volumes:
+      - /tmp/.X11-unix:/tmp/.X11-unix:ro  # Mount X11 socket for GUI apps
+      - /dev:/dev                         # Mount /dev to access devices
+      - ${REG_CONTEXT}:${REG_SHARED_DIR}
+      - ${REG_PKG_DIR}:${REG_PKG_DIR}
+    stdin_open: true    # Keep stdin open (equivalent to -i)
+    tty: true           # Allocate a pseudo-TTY (equivalent to -t)
+    working_dir: /root/ros2_ws
+
+
+networks:
+  ros_network:
+    driver: bridge
