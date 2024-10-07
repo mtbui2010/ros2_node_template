@@ -10,3 +10,16 @@ RUN mkdir -p $SHARED_DIR
 RUN cd /root/ros2_ws
 RUN rm -rf src
 RUN ln -s $SHARED_DIR src
+
+# install utils
+RUN apt-get update
+RUN apt install wget -y
+
+#alias
+RUN echo "alias edit_bashrc='nano ~/.bashrc'" >> /root/.bashrc
+RUN echo "alias source_bashrc='source ~/.bashrc'" >> /root/.bashrc
+RUN echo "alias piplseditable='pip list --editable'" >> /root/.bashrc
+
+RUN echo 'launchros2pkg() {' >> /root/.bashrc
+RUN echo '  ros2 launch "$@" "$@"_node.launch.py' >> /root/.bashrc
+RUN echo '}' >> /root/.bashrc

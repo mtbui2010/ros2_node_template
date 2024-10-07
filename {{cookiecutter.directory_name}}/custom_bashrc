@@ -1,0 +1,43 @@
+#custom definitions
+PATH=/usr/local/cuda/bin:$PATH
+LD_LIBRARY_PATH=/usr/local/cuda/lib64:$LD_LIBRARY_PATH
+
+
+WORKDIR=/media/keti/workdir
+
+alias chown_keti='sudo chown -R keti .'
+alias source_bashrc='source ~/.bashrc'
+alias edit_bashrc='sudo gedit ~/.bashrc'
+alias about_pc='lsb_release -a'
+alias run_py310='source /media/keti/workdir/venvs/py310vir/bin/activate'
+alias create_py_simple_pkg='cookiecutter https://github.com/mtbui2010/python_pkg_simple_template.git'
+alias piplseditable='pip list --editable'
+
+#docker
+alias docker_start='sudo docker start'
+alias docker_stop='sudo docker stop'
+alias docker_run='sudo docker run -it'
+alias docker_watch='sudo watch docker ps -a'
+alias image_watch='sudo watch docker image ls -a'
+alias image_rm='sudo docker image rm'
+alias source_ros2='source /opt/ros/foxy/setup.bash'
+alias source_ros2_setup='source ~/ros2_ws/install/setup.bash'
+#functions
+dockerexec() {
+  sudo docker start "$@" & sudo docker exec -it "$@" /bin/bash
+}
+dockerrm() {
+  sudo docker stop "$@" & sudo docker rm "$@"
+}
+dockerbuildtemp() {
+  sudo docker build -f "$@" -t image:temp . & sudo docker run -it --name con_temp image:temp
+}
+launchros2pkg() {
+  ros2 launch "$@" "$@"_node.launch.py
+}
+
+#Grounded SAM vars
+export AM_I_DOCKER=False
+export BUILD_WITH_CUDA=True
+export CUDA_HOME=/usr/local/cuda
+
