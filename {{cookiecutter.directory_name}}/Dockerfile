@@ -23,3 +23,7 @@ RUN echo "alias piplseditable='pip list --editable'" >> /root/.bashrc
 RUN echo 'launchros2pkg() {' >> /root/.bashrc
 RUN echo '  ros2 launch "$@" "$@"_node.launch.py' >> /root/.bashrc
 RUN echo '}' >> /root/.bashrc
+
+RUN echo 'runros2pkg() {' >> /root/.bashrc
+RUN echo '  ros2 run "$@" "$@"_node' >> /root/.bashrc
+RUN echo '}' >> /root/.bashrc

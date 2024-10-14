@@ -7,13 +7,13 @@ fi
 PACKAGE_NAME=$1
 
 # Create the package with the default ament_python template
-ros2 pkg create $PACKAGE_NAME --build-type ament_python --dependencies rclpy opencv-python numpy pyrealsense2 cv_bridge
+ros2 pkg create $PACKAGE_NAME --build-type ament_python --dependencies rclpy cv_bridge
 #!/bin/bash
 # Add custom files or directories as needed
 mkdir $PACKAGE_NAME/launch
-LAUNCH_FILE_PATH=$PACKAGE_NAME/launch/$PACKAGE_NAME"_node.launch.py"
+LAUNCH_FILE_PATH=$PACKAGE_NAME/launch/$PACKAGE_NAME".launch.py"
 SETUP_FILE_PATH=$PACKAGE_NAME/setup.py
-MAIN_FILE_PATH=$PACKAGE_NAME/$PACKAGE_NAME/$PACKAGE_NAME"_node.py"
+MAIN_FILE_PATH=$PACKAGE_NAME/$PACKAGE_NAME/$PACKAGE_NAME".py"
 
 cp pkg_setup.py $SETUP_FILE_PATH
 sed -i s/PACKAGE_NAME_HERE/$PACKAGE_NAME/g $SETUP_FILE_PATH
