@@ -16,9 +16,11 @@ RUN apt-get update
 RUN apt install wget -y
 
 #alias
-RUN echo "alias edit_bashrc='nano ~/.bashrc'" >> /root/.bashrc
-RUN echo "alias source_bashrc='source ~/.bashrc'" >> /root/.bashrc
-RUN echo "alias piplseditable='pip list --editable'" >> /root/.bashrc
+RUN echo "ROSWS=/root/ros2_ws/src" >> /root/.bashrc
+RUN echo "ROSPY=python3" >> /root/.bashrc
+
+RUN echo "alias eb='nano ~/.bashrc'" >> /root/.bashrc
+RUN echo "alias sb='source ~/.bashrc'" >> /root/.bashrc
 
 RUN echo 'launchros2pkg() {' >> /root/.bashrc
 RUN echo '  ros2 launch "$@" "$@"_node.launch.py' >> /root/.bashrc

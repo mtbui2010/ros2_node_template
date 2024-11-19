@@ -4,14 +4,15 @@ LD_LIBRARY_PATH=/usr/local/cuda/lib64:$LD_LIBRARY_PATH
 
 
 WORKDIR=/media/keti/workdir
+ROSWS=~/ros2_ws/src
+ROSPY=/media/keti/workdir/venvs/py38vir/bin/python3
 
 alias chown_keti='sudo chown -R keti .'
-alias source_bashrc='source ~/.bashrc'
-alias edit_bashrc='sudo gedit ~/.bashrc'
+alias sb='source ~/.bashrc'
+alias sb='sudo gedit ~/.bashrc'
 alias about_pc='lsb_release -a'
 alias run_py310='source /media/keti/workdir/venvs/py310vir/bin/activate'
 alias create_py_simple_pkg='cookiecutter https://github.com/mtbui2010/python_pkg_simple_template.git'
-alias piplseditable='pip list --editable'
 
 #docker
 alias docker_start='sudo docker start'
@@ -20,8 +21,8 @@ alias docker_run='sudo docker run -it'
 alias docker_watch='sudo watch docker ps -a'
 alias image_watch='sudo watch docker image ls -a'
 alias image_rm='sudo docker image rm'
-alias source_ros2='source /opt/ros/foxy/setup.bash'
-alias source_ros2_setup='source ~/ros2_ws/install/setup.bash'
+alias sr='source /opt/ros/foxy/setup.bash'
+alias srs='source ~/ros2_ws/install/setup.bash'
 #functions
 dockerexec() {
   sudo docker start "$@" & sudo docker exec -it "$@" /bin/bash
