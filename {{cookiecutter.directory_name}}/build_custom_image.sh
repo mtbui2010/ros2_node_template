@@ -1,0 +1,1 @@
+sudo docker build -f Dockerfile_custom -t mtbui2010/ubuntu20.04:cuda.11.1-ros2 .
